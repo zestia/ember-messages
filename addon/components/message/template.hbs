@@ -1,0 +1,12 @@
+<div
+  {{did-insert (action "registerElement")}}
+  role="alert"
+  class="message message--{{@type}} {{if @dismissable (if this.isDismissed "message--dismissed" "message--revealed")}}"
+  ...attributes>
+  <div class="message__body">
+    {{yield}}
+  </div>
+  {{#if @dismissable}}
+    <button type="button" class="message__dismiss" onclick={{action "dismiss"}}></button>
+  {{/if}}
+</div>

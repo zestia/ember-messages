@@ -1,0 +1,27 @@
+@keyframes test-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes test-fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.message--revealed {
+  animation: test-fade-in 100ms backwards;
+}
+
+.message--dismissed {
+  animation: test-fade-out 100ms forwards;
+}
