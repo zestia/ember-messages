@@ -1,5 +1,5 @@
 <div
-  {{on "animationend" this.dismissed}}
+  {{did-insert (action "registerElement")}}
   role="alert"
   class="message message--{{@type}} {{if @dismissable (if this.isDismissed "message--dismissed" "message--revealed")}}"
   ...attributes>
@@ -7,6 +7,6 @@
     {{yield}}
   </div>
   {{#if @dismissable}}
-    <button type="button" class="message__dismiss" {{on "click" this.dismiss}}></button>
+    <button type="button" class="message__dismiss" onclick={{action "dismiss"}}></button>
   {{/if}}
 </div>

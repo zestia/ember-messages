@@ -1,20 +1,25 @@
 import Component from '@ember/component';
-import { action } from '@ember/object';
+import { set } from '@ember/object';
 import layout from './template';
 
-export default class MessageComponent extends Component {
-  layout = layout;
-  tagName = '';
+export default Component.extend({
+  layout,
+  tagName: '',
 
-  isDismissed = false;
+  isDismissed: false,
 
-  @action
-  dismiss() {
-    this.set('isDismissed', true);
+  onDismiss() {},
+
+  actions: {
+    registerElement(element) {
+      set(this, 'domElement', element);
+    },
+
+    dismiss() {
+      this.domElement.addEventListener('animationend', this.onDismiss, {
+        once: true
+      });
+      this.set('isDismissed', true);
+    }
   }
-
-  @action
-  dismissed() {
-    this.onDismiss();
-  }
-}
+});
