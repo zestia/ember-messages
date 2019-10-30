@@ -19,7 +19,7 @@ ember install @zestia/ember-messages
 #### Standalone message
 
 ```handlebars
-<Message @type="warning">
+<Message @type="your-type-goes-here">
   Content goes here
 </Message>
 ```
