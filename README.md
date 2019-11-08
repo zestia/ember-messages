@@ -4,17 +4,17 @@ This Ember addon provides a component for rendering messages, which can optional
 
 Additionally, messages can be flashed using the flash message service.
 
-### Info
-
-- This package intentionally does not come with any styles.
-
-### Installation
+## Installation
 
 ```
 ember install @zestia/ember-messages
 ```
 
-### Example
+## Notes
+
+- This package intentionally does not come with any styles.
+
+## Examples
 
 #### Standalone message
 
