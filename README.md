@@ -1,5 +1,7 @@
 # @zestia/ember-messages
 
+<a href="https://badge.fury.io/js/%40zestia%2Fember-messages"><img src="https://badge.fury.io/js/%40zestia%2Fember-messages.svg" alt="npm version" height="18"></a> &nbsp; <a href="http://travis-ci.org/zestia/ember-messages"><img src="https://travis-ci.org/zestia/ember-messages.svg?branch=master"></a> &nbsp; <a href="https://david-dm.org/zestia/ember-messages#badge-embed"><img src="https://david-dm.org/zestia/ember-messages.svg"></a> &nbsp; <a href="https://david-dm.org/zestia/ember-messages#dev-badge-embed"><img src="https://david-dm.org/zestia/ember-messages/dev-status.svg"></a> &nbsp; <a href="https://emberobserver.com/addons/@zestia/ember-messages"><img src="https://emberobserver.com/badges/-zestia-ember-messages.svg"></a>
+
 This Ember addon provides a component for rendering messages, which can optionally be dismissed by the user.
 
 Additionally, messages can be flashed using the flash message service.
