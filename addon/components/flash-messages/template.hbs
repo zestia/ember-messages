@@ -1,11 +1,12 @@
 <div class="flash-messages">
   {{#each this.flashMessageService.queue as |message|}}
     <Message
-       {{did-insert this.scrollIntoView}}
-       class="flash-message"
-       @type={{message.type}}
-       @dismissable={{true}}
-       @onDismiss={{fn this.dismiss message}}>
+      class="flash-message"
+      @type={{message.type}}
+      @dismissable={{true}}
+      @onDismiss={{fn this.dismiss message}}
+      {{did-insert this.scrollIntoView}}
+    >
       {{message.text}}
     </Message>
   {{/each}}
