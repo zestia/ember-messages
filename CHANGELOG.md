@@ -1,9 +1,5 @@
 # Changelog
 
-## 2.0.1
-
-- Move glimmer from devDeps to deps
-
 ## 2.0.0
 
 - Glimmerise component
