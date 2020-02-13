@@ -1,13 +1,9 @@
 import { inject } from '@ember/service';
-import Component from '@ember/component';
-import layout from './template';
+import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 export default class FlashMessageComponent extends Component {
   @inject('flash-message') flashMessageService;
-
-  layout = layout;
-  tagName = '';
 
   @action
   dismiss(message) {

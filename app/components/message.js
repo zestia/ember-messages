@@ -1,1 +1,1 @@
-export { default } from '@zestia/ember-messages/components/message/component';
+export { default } from '@zestia/ember-messages/components/message/message';

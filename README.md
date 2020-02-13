@@ -17,7 +17,7 @@
     <img src="https://emberobserver.com/badges/-zestia-ember-messages.svg">
   </a>
 
-  <img src="https://img.shields.io/badge/Ember-%3E%3D%203.11-brightgreen">
+  <img src="https://img.shields.io/badge/Ember-%3E%3D%203.16-brightgreen">
 </p>
 
 This Ember addon provides a component for rendering messages, which can optionally be dismissed by the user.
