@@ -1,1 +1,1 @@
-export { default } from '@zestia/ember-messages/components/flash-messages/flash-messages';
+export { default } from '@zestia/ember-messages/components/flash-messages/index';

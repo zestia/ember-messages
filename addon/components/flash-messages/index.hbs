@@ -1,0 +1,15 @@
+{{#if this.flashMessageService.queue.length}}
+  <div class="flash-messages">
+    {{#each this.flashMessageService.queue as |message|}}
+      <Message
+        class="flash-message"
+        @type={{message.type}}
+        @dismissable={{true}}
+        @onDismiss={{fn this.dismiss message}}
+        {{did-insert this.scrollIntoView}}
+      >
+        {{message.text}}
+      </Message>
+    {{/each}}
+  </div>
+{{/if}}

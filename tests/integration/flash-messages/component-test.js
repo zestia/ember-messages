@@ -11,18 +11,32 @@ module('flash-messages', function(hooks) {
     this.flashMessageService = this.owner.lookup('service:flash-message');
   });
 
+  test('it does not render', async function(assert) {
+    assert.expect(1);
+
+    await render(hbs`<FlashMessages />`);
+
+    assert.equal(
+      this.element.innerHTML,
+      '<!---->',
+      'does not render if there are no flash messages to display'
+    );
+  });
+
   test('it renders', async function(assert) {
     assert.expect(4);
 
     await render(hbs`<FlashMessages />`);
 
-    assert
-      .dom('.flash-messages')
-      .exists('flash messages component has an appropriate class name');
-
     this.flashMessageService.add('success', 'Success!');
 
     await settled();
+
+    assert
+      .dom('.flash-messages')
+      .exists(
+        'it renders when there there is at least one flash message to display'
+      );
 
     assert
       .dom('.flash-messages > .flash-message.message.message--success')
