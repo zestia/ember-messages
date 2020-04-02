@@ -4,14 +4,14 @@ import { waitUntil, render, settled, click, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import waitForAnimation from '../../helpers/wait-for-animation';
 
-module('flash-messages', function(hooks) {
+module('flash-messages', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.flashMessageService = this.owner.lookup('service:flash-message');
   });
 
-  test('it does not render', async function(assert) {
+  test('it does not render', async function (assert) {
     assert.expect(1);
 
     await render(hbs`<FlashMessages />`);
@@ -23,7 +23,7 @@ module('flash-messages', function(hooks) {
     );
   });
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     assert.expect(4);
 
     await render(hbs`<FlashMessages />`);
@@ -55,7 +55,7 @@ module('flash-messages', function(hooks) {
       .exists({ count: 2 }, 'renders flash messages');
   });
 
-  test('dismissing', async function(assert) {
+  test('dismissing', async function (assert) {
     assert.expect(2);
 
     await render(hbs`<FlashMessages />`);
@@ -81,7 +81,7 @@ module('flash-messages', function(hooks) {
     );
   });
 
-  test('shares flash messages state', async function(assert) {
+  test('shares flash messages state', async function (assert) {
     assert.expect(1);
 
     await render(hbs`
@@ -98,7 +98,7 @@ module('flash-messages', function(hooks) {
       .exists({ count: 2 }, 'can be rendered more than once');
   });
 
-  test('escaping', async function(assert) {
+  test('escaping', async function (assert) {
     assert.expect(1);
 
     this.flashMessageService.add('success', '<strong>Foo</strong>');
@@ -113,7 +113,7 @@ module('flash-messages', function(hooks) {
     );
   });
 
-  test('scrolls into view', async function(assert) {
+  test('scrolls into view', async function (assert) {
     assert.expect(2);
 
     await render(hbs`

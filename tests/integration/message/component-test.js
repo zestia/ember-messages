@@ -4,10 +4,10 @@ import { render, click } from '@ember/test-helpers';
 import waitForAnimation from '../../helpers/wait-for-animation';
 import hbs from 'htmlbars-inline-precompile';
 
-module('message', function(hooks) {
+module('message', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('defaults', async function(assert) {
+  test('defaults', async function (assert) {
     assert.expect(5);
 
     await render(hbs`<Message class="foo" />`);
@@ -34,7 +34,7 @@ module('message', function(hooks) {
       );
   });
 
-  test('block content', async function(assert) {
+  test('block content', async function (assert) {
     assert.expect(1);
 
     await render(hbs`<Message>Hello World</Message>`);
@@ -44,7 +44,7 @@ module('message', function(hooks) {
       .hasText('Hello World', 'renders block content in a separate element');
   });
 
-  test('message type', async function(assert) {
+  test('message type', async function (assert) {
     assert.expect(1);
 
     await render(hbs`<Message @type="foo" />`);
@@ -57,7 +57,7 @@ module('message', function(hooks) {
       );
   });
 
-  test('dismissing', async function(assert) {
+  test('dismissing', async function (assert) {
     assert.expect(6);
 
     this.dismiss = () => {

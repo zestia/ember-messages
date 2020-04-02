@@ -28,7 +28,7 @@ export default class FlashMessageService extends Service {
 
   _exists(type, text) {
     return this.queue.some(
-      message => message.type === type && message.text === text
+      (message) => message.type === type && message.text === text
     );
   }
 }

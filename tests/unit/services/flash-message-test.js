@@ -2,16 +2,16 @@ import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 const { isArray } = Array;
 
-module('service:flash-message', function(hooks) {
+module('service:flash-message', function (hooks) {
   setupTest(hooks);
 
   let flashMessageService;
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     flashMessageService = this.owner.lookup('service:flash-message');
   });
 
-  test('defaults', function(assert) {
+  test('defaults', function (assert) {
     assert.expect(1);
 
     assert.ok(
@@ -20,7 +20,7 @@ module('service:flash-message', function(hooks) {
     );
   });
 
-  test('#add', function(assert) {
+  test('#add', function (assert) {
     assert.expect(3);
 
     const message = flashMessageService.add('error', 'Error!');
@@ -44,7 +44,7 @@ module('service:flash-message', function(hooks) {
     );
   });
 
-  test('#add (duplicates)', function(assert) {
+  test('#add (duplicates)', function (assert) {
     assert.expect(1);
 
     flashMessageService.add('error', 'Something bad happened');
@@ -58,7 +58,7 @@ module('service:flash-message', function(hooks) {
     );
   });
 
-  test('#remove', function(assert) {
+  test('#remove', function (assert) {
     assert.expect(2);
 
     const message = flashMessageService.add('foo', 'foo');
@@ -76,7 +76,7 @@ module('service:flash-message', function(hooks) {
     );
   });
 
-  test('#clear', function(assert) {
+  test('#clear', function (assert) {
     assert.expect(2);
 
     flashMessageService.add('error', 'Fail');

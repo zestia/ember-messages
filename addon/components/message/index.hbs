@@ -1,6 +1,10 @@
 <div
   role="alert"
-  class="message message--{{@type}} {{if @dismissable (if this.isDismissed "message--dismissed" "message--revealed")}}"
+  class="message message--{{@type}} {{
+    if
+    @dismissable
+    (if this.isDismissed "message--dismissed" "message--revealed")
+  }}"
   ...attributes
   {{did-insert this.registerElement}}
 >

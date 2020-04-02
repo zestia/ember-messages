@@ -13,7 +13,7 @@ export default class MessageComponent extends Component {
   @action
   dismiss() {
     this.domElement.addEventListener('animationend', this.args.onDismiss, {
-      once: true
+      once: true,
     });
     this.isDismissed = true;
   }
