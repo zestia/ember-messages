@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1
+
+- Upgrade dependencies
+
 ## 2.1.0
 
 - Does not render flash messages element if there are no flash messages to display
