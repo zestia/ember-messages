@@ -24,11 +24,11 @@ module('flash-messages', function (hooks) {
   });
 
   test('it renders', async function (assert) {
-    assert.expect(4);
+    assert.expect(5);
 
     await render(hbs`<FlashMessages />`);
 
-    this.flashMessageService.add('success', 'Success!');
+    const success = this.flashMessageService.add('success', 'Success!');
 
     await settled();
 
@@ -53,6 +53,14 @@ module('flash-messages', function (hooks) {
     assert
       .dom('.flash-messages > .flash-message.message')
       .exists({ count: 2 }, 'renders flash messages');
+
+    this.flashMessageService.remove(success);
+
+    await settled();
+
+    assert
+      .dom('.flash-messages > .flash-message')
+      .exists({ count: 1 }, 'array is tracked');
   });
 
   test('dismissing', async function (assert) {

@@ -1,29 +1,31 @@
 import Service from '@ember/service';
-import { set } from '@ember/object';
-import { A as emberA } from '@ember/array';
+import { tracked } from '@glimmer/tracking';
 
 export default class FlashMessageService extends Service {
-  constructor() {
-    super(...arguments);
-
-    set(this, 'queue', emberA());
-    this.clear();
-  }
+  @tracked queue = [];
 
   add(type, text) {
     if (this._exists(type, text)) {
       return;
     }
 
-    return this.queue.pushObject({ type, text });
+    const message = { type, text };
+
+    this.queue = [...this.queue, message];
+
+    return message;
   }
 
   remove(message) {
-    this.queue.removeObject(message);
+    const index = this.queue.indexOf(message);
+
+    this.queue.splice(index, 1);
+
+    this.queue = [...this.queue];
   }
 
   clear() {
-    this.queue.clear();
+    this.queue = [];
   }
 
   _exists(type, text) {
