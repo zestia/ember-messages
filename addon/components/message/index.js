@@ -3,17 +3,18 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class MessageComponent extends Component {
+  @tracked element;
   @tracked isDismissed = false;
 
   @action
   registerElement(element) {
-    this.domElement = element;
+    this.element = element;
   }
 
   @action
   dismiss() {
-    this.domElement.addEventListener('animationend', this.args.onDismiss, {
-      once: true,
+    this.element.addEventListener('animationend', this.args.onDismiss, {
+      once: true
     });
     this.isDismissed = true;
   }

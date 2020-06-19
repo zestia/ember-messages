@@ -15,7 +15,7 @@ export default class FlashMessageComponent extends Component {
     try {
       element.scrollIntoView({
         behavior: 'smooth',
-        block: 'nearest',
+        block: 'nearest'
       });
     } catch (error) {
       // eslint-disable no-empty
