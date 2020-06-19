@@ -5,11 +5,11 @@ export default class FlashMessageService extends Service {
   @tracked queue = [];
 
   add(type, text) {
-    if (this._exists(type, text)) {
+    const message = { type, text };
+
+    if (this._exists(message)) {
       return;
     }
-
-    const message = { type, text };
 
     this.queue = [...this.queue, message];
 
@@ -28,9 +28,9 @@ export default class FlashMessageService extends Service {
     this.queue = [];
   }
 
-  _exists(type, text) {
+  _exists(message) {
     return this.queue.some(
-      (message) => message.type === type && message.text === text
+      (m) => m.type === message.type && m.text === message.text
     );
   }
 }
