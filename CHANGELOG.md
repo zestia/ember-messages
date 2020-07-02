@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.4
+
+- Upgrade dependencies
+
 ## 2.1.3
 
 - Remove use of set
