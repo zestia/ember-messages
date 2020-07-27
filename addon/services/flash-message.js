@@ -8,10 +8,10 @@ export default class FlashMessageService extends Service {
     const message = { type, text };
 
     if (this._exists(message)) {
-      return;
+      this._replace(message);
+    } else {
+      this.queue = [...this.queue, message];
     }
-
-    this.queue = [...this.queue, message];
 
     return message;
   }
@@ -19,7 +19,9 @@ export default class FlashMessageService extends Service {
   remove(message) {
     const index = this.queue.indexOf(message);
 
-    this.queue.splice(index, 1);
+    if (index !== -1) {
+      this.queue.splice(index, 1);
+    }
 
     this.queue = [...this.queue];
   }
@@ -28,9 +30,23 @@ export default class FlashMessageService extends Service {
     this.queue = [];
   }
 
-  _exists(message) {
-    return this.queue.some(
+  _replace(message) {
+    const index = this._findIndex(message);
+
+    if (index !== -1) {
+      this.queue.splice(index, 1, message);
+    }
+
+    this.queue = [...this.queue];
+  }
+
+  _findIndex(message) {
+    return this.queue.findIndex(
       (m) => m.type === message.type && m.text === message.text
     );
+  }
+
+  _exists(message) {
+    return this._findIndex(message) !== -1;
   }
 }

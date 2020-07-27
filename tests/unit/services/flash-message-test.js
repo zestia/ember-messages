@@ -20,80 +20,55 @@ module('service:flash-message', function (hooks) {
     );
   });
 
-  test('#add', function (assert) {
-    assert.expect(3);
+  module('#add', function () {
+    test('it add a message to the queue', function (assert) {
+      assert.expect(3);
 
-    const message = flashMessageService.add('error', 'Error!');
+      const message = flashMessageService.add('error', 'Error!');
 
-    assert.equal(
-      flashMessageService.queue.length,
-      1,
-      'flash messages are added to the queue'
-    );
+      assert.equal(flashMessageService.queue.length, 1);
+      assert.equal(message.type, 'error');
+      assert.equal(message.text, 'Error!');
+    });
 
-    assert.equal(
-      message.type,
-      'error',
-      'the type gets set on the flash message model'
-    );
+    test('it removes duplicates', function (assert) {
+      assert.expect(1);
 
-    assert.equal(
-      message.text,
-      'Error!',
-      'the text gets set on the flash message model'
-    );
+      const one = flashMessageService.add('error', 'Something bad happened');
+      const two = flashMessageService.add('success', 'Something good happened');
+
+      flashMessageService.add('error', 'Something bad happened');
+
+      assert.deepEqual(flashMessageService.queue, [one, two]);
+    });
   });
 
-  test('#add (duplicates)', function (assert) {
-    assert.expect(1);
+  module('#remove', function () {
+    test('it removes messages from the queue', function (assert) {
+      assert.expect(2);
 
-    flashMessageService.add('error', 'Something bad happened');
-    flashMessageService.add('success', 'Something good happened');
-    flashMessageService.add('error', 'Something bad happened');
+      const message = flashMessageService.add('foo', 'foo');
 
-    assert.equal(
-      flashMessageService.queue.length,
-      2,
-      'duplicate message is not added'
-    );
+      assert.ok(flashMessageService.queue.includes(message));
+
+      flashMessageService.remove(message);
+
+      assert.ok(!flashMessageService.queue.includes(message));
+    });
   });
 
-  test('#remove', function (assert) {
-    assert.expect(2);
+  module('#clear', function () {
+    test('it clears the queue', function (assert) {
+      assert.expect(2);
 
-    const message = flashMessageService.add('foo', 'foo');
+      flashMessageService.add('error', 'Fail');
+      flashMessageService.add('success', 'Yey');
 
-    assert.ok(
-      flashMessageService.queue.includes(message),
-      'precondition: flash message added'
-    );
+      assert.equal(flashMessageService.queue.length, 2);
 
-    flashMessageService.remove(message);
+      flashMessageService.clear();
 
-    assert.ok(
-      !flashMessageService.queue.includes(message),
-      'removes a flash message from the queue'
-    );
-  });
-
-  test('#clear', function (assert) {
-    assert.expect(2);
-
-    flashMessageService.add('error', 'Fail');
-    flashMessageService.add('success', 'Yey');
-
-    assert.equal(
-      flashMessageService.queue.length,
-      2,
-      'precondition: flash message service has flash messages'
-    );
-
-    flashMessageService.clear();
-
-    assert.equal(
-      flashMessageService.queue.length,
-      0,
-      'clears the flash messages'
-    );
+      assert.equal(flashMessageService.queue.length, 0);
+    });
   });
 });

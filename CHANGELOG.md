@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.5
+
+- Replaces a flash message when add the same one more than once.<br>
+  This ensures the flash message is rendered, and therefore scrolled to.
+
 ## 2.1.4
 
 - Upgrade dependencies

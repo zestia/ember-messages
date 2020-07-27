@@ -122,7 +122,7 @@ module('flash-messages', function (hooks) {
   });
 
   test('scrolls into view', async function (assert) {
-    assert.expect(2);
+    assert.expect(4);
 
     await render(hbs`
       <style>
@@ -152,9 +152,26 @@ module('flash-messages', function (hooks) {
     await waitUntil(scrolled);
 
     assert.ok(
-      scrolled(),
+      true,
       'when rendered, a flash message forces itself to be scrolled into view. ' +
         '(this is primarily because the user may be at the end of a long form)'
+    );
+
+    container.scrollTo(0, 0);
+
+    assert.equal(
+      container.scrollTop,
+      0,
+      'precondition: container is scrolled back to the top'
+    );
+
+    this.flashMessageService.add('info', 'Look at me');
+
+    await waitUntil(scrolled);
+
+    assert.ok(
+      true,
+      'rendering the same flash message again will still scroll to it'
     );
   });
 });
