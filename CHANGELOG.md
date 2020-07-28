@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.6
+
+- Makes sure when the same flash message is added more than once, it is inserted
+  in the queue in the correct position (appended).
+
 ## 2.1.5
 
 - Replaces a flash message when add the same one more than once.<br>

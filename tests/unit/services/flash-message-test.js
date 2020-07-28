@@ -31,7 +31,7 @@ module('service:flash-message', function (hooks) {
       assert.equal(message.text, 'Error!');
     });
 
-    test('it removes duplicates', function (assert) {
+    test('it does not add duplicates', function (assert) {
       assert.expect(1);
 
       const one = flashMessageService.add('error', 'Something bad happened');
@@ -39,7 +39,7 @@ module('service:flash-message', function (hooks) {
 
       flashMessageService.add('error', 'Something bad happened');
 
-      assert.deepEqual(flashMessageService.queue, [one, two]);
+      assert.deepEqual(flashMessageService.queue, [two, one]);
     });
   });
 
