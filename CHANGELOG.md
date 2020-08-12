@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.7
+
+- Upgrade dependencies
+
 ## 2.1.6
 
 - Makes sure when the same flash message is added more than once, it is inserted
