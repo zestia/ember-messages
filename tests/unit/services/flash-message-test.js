@@ -53,7 +53,7 @@ module('service:flash-message', function (hooks) {
 
       flashMessageService.remove(message);
 
-      assert.ok(!flashMessageService.queue.includes(message));
+      assert.notOk(flashMessageService.queue.includes(message));
     });
   });
 
