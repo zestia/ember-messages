@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.11
+
+- Add aria-label to dismiss button
+- Remove use of ember render modifiers
+- Introduce local modifiers
+
 ## 2.1.10
 
 - Run ember-cli-update

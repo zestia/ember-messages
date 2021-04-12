@@ -6,7 +6,7 @@
     (if this.isDismissed "message--dismissed" "message--revealed")
   }}"
   ...attributes
-  {{did-insert this.registerElement}}
+  {{this.registerElement}}
 >
   <div class="message__body">
     {{yield}}
@@ -15,7 +15,8 @@
     <button
       type="button"
       class="message__dismiss"
-      {{on "click" this.dismiss}}
+      aria-label="Dismiss"
+      {{on "click" this.handleClickDismiss}}
     ></button>
   {{/if}}
 </div>

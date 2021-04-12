@@ -58,7 +58,7 @@ module('message', function (hooks) {
   });
 
   test('dismissing', async function (assert) {
-    assert.expect(6);
+    assert.expect(8);
 
     this.dismiss = () => {
       assert.step('dismissed');
@@ -67,6 +67,11 @@ module('message', function (hooks) {
     await render(
       hbs`<Message @dismissable={{true}} @onDismiss={{this.dismiss}} />`
     );
+
+    assert
+      .dom('.message__dismiss')
+      .hasText('')
+      .hasAttribute('aria-label', 'Dismiss');
 
     assert
       .dom('.message')

@@ -1,17 +1,17 @@
 import { inject } from '@ember/service';
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import { modifier } from 'ember-modifier';
 
 export default class FlashMessageComponent extends Component {
   @inject('flash-message') flashMessageService;
 
   @action
-  dismiss(message) {
+  handleDismissMessage(message) {
     this.flashMessageService.remove(message);
   }
 
-  @action
-  scrollIntoView(element) {
+  scrollIntoView = modifier((element) => {
     try {
       element.scrollIntoView({
         behavior: 'smooth',
@@ -20,5 +20,5 @@ export default class FlashMessageComponent extends Component {
     } catch (error) {
       // eslint-disable no-empty
     }
-  }
+  });
 }
