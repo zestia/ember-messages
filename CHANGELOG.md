@@ -6,7 +6,7 @@
 - Remove use of ember render modifiers
 - Introduce local modifiers
 
-## 2.2.11
+## 2.1.11
 
 - Upgrade dependencies
 
