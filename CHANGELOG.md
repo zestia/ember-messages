@@ -1,13 +1,18 @@
 # Changelog
 
-## 2.1.11
+## 2.1.12 (unreleased)
 
 - Add aria-label to dismiss button
 - Remove use of ember render modifiers
 - Introduce local modifiers
 
+## 2.2.11
+
+- Upgrade dependencies
+
 ## 2.1.10
 
+- Upgrade dependencies
 - Run ember-cli-update
 
 ## 2.1.9
