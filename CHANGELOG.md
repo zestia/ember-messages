@@ -1,10 +1,9 @@
 # Changelog
 
-## 2.1.12 (unreleased)
+## 2.2.0
 
-- Add aria-label to dismiss button
-- Remove use of ember render modifiers
-- Introduce local modifiers
+- Upgrade dependencies
+- Add Embroider support
 
 ## 2.1.11
 
