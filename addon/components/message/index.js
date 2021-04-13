@@ -12,7 +12,7 @@ export default class MessageComponent extends Component {
   }
 
   @action
-  dismiss() {
+  handleClickDismiss() {
     this.element.addEventListener('animationend', this.args.onDismiss, {
       once: true
     });

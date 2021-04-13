@@ -5,7 +5,7 @@
         class="flash-message"
         @type={{message.type}}
         @dismissable={{true}}
-        @onDismiss={{fn this.dismiss message}}
+        @onDismiss={{fn this.handleDismissMessage message}}
         {{did-insert this.scrollIntoView}}
       >
         {{message.text}}

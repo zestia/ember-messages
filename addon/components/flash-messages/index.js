@@ -6,7 +6,7 @@ export default class FlashMessageComponent extends Component {
   @inject('flash-message') flashMessageService;
 
   @action
-  dismiss(message) {
+  handleDismissMessage(message) {
     this.flashMessageService.remove(message);
   }
 

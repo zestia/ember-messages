@@ -15,7 +15,8 @@
     <button
       type="button"
       class="message__dismiss"
-      {{on "click" this.dismiss}}
+      aria-label="Dismiss"
+      {{on "click" this.handleClickDismiss}}
     ></button>
   {{/if}}
 </div>
