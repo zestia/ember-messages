@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click } from '@ember/test-helpers';
+import { render, click, find } from '@ember/test-helpers';
 import waitForAnimation from '../../helpers/wait-for-animation';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -8,7 +8,7 @@ module('message', function (hooks) {
   setupRenderingTest(hooks);
 
   test('defaults', async function (assert) {
-    assert.expect(5);
+    assert.expect(6);
 
     await render(hbs`<Message class="foo" />`);
 
@@ -32,6 +32,12 @@ module('message', function (hooks) {
         'message--revealed',
         'does not add revealed class, because by default messages are not dismissible'
       );
+
+    assert.deepEqual(
+      find('.message').classList,
+      ['message', 'foo'],
+      'does not have a class name based on the message type when no type is set'
+    );
   });
 
   test('block content', async function (assert) {

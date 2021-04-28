@@ -1,10 +1,14 @@
 <div
   role="alert"
-  class="message message--{{@type}} {{
-    if
-    @dismissable
-    (if this.isDismissed "message--dismissed" "message--revealed")
-  }}"
+  class={{
+    concat
+    "message "
+    (if @type (concat "message--" @type))
+    (if
+      @dismissable
+      (concat " message--" (if this.isDismissed "dismissed" "revealed"))
+    )
+  }}
   ...attributes
   {{this.registerElement}}
 >

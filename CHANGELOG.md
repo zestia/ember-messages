@@ -4,6 +4,7 @@
 
 - Upgrade dependencies
 - Add Embroider support
+- Use local modifiers
 
 ## 2.1.11
 
