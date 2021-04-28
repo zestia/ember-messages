@@ -5,6 +5,7 @@
 - Upgrade dependencies
 - Add Embroider support
 - Use local modifiers
+- Don't add type modifier class if no type specified
 
 ## 2.1.11
 
