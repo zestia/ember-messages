@@ -34,7 +34,7 @@ module('message', function (hooks) {
       );
 
     assert.deepEqual(
-      find('.message').classList,
+      [...find('.message').classList],
       ['message', 'foo'],
       'does not have a class name based on the message type when no type is set'
     );
