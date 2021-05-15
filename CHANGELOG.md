@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.1 (not yet published)
+
+- Upgrade dependencies
+
 ## 2.2.0
 
 - Upgrade dependencies
