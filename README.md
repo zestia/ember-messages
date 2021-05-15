@@ -50,7 +50,11 @@ ember install @zestia/ember-messages
 
 ```handlebars
 {{#if this.showMessage}}
-  <Message @type="warning" @dismissable={{true}} @onDismiss={{this.hideMessage}}>
+  <Message
+    @type="warning"
+    @dismissable={{true}}
+    @onDismiss={{this.hideMessage}}
+  >
     Clicking hide will fire the dismiss action after a CSS animation
   </Message>
 {{/if}}
