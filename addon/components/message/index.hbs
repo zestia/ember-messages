@@ -9,7 +9,7 @@
     )
   }}
   ...attributes
-  {{this.registerElement}}
+  {{on "animationend" this.handleAnimationEnd once=true}}
 >
   <div class="message__body">
     {{yield}}

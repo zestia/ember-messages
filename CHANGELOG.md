@@ -3,6 +3,7 @@
 ## 2.2.1 (not yet published)
 
 - Upgrade dependencies
+- Simplify waiting for animation
 
 ## 2.2.0
 
