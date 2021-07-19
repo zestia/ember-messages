@@ -1,12 +1,15 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { modifier } from 'ember-modifier';
 import { defer } from 'rsvp';
 
 export default class MessageComponent extends Component {
   willAnimate = defer();
 
   @tracked isDismissed = false;
+
+  registerElement = modifier((element) => (this.element = element));
 
   @action
   handleClickDismiss() {
@@ -16,8 +19,10 @@ export default class MessageComponent extends Component {
   }
 
   @action
-  handleAnimationEnd() {
-    this.willAnimate.resolve();
+  handleAnimationEnd(event) {
+    if (event.target === this.element) {
+      this.willAnimate.resolve();
+    }
   }
 
   _waitForAnimation() {
