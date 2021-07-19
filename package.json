@@ -7,6 +7,10 @@
     "message",
     "flash"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zestia/ember-messages.git"
+  },
   "license": "MIT",
   "author": "Zestia",
   "directories": {
@@ -29,10 +33,6 @@
     "test:ember-compatibility": "ember try:each",
     "prettier": "prettier . --write",
     "release": "release-it"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zestia/ember-messages.git"
   },
   "dependencies": {
     "ember-cli-babel": "^7.26.6",
