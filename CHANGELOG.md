@@ -3,7 +3,7 @@
 ## 2.2.1 (not yet published)
 
 - Upgrade dependencies
-- Fix waiting for animation: Make sure the animation happens on the actual message element, and not a child.
+- Simplify waiting for animation
 
 ## 2.2.0
 
