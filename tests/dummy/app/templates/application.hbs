@@ -10,11 +10,11 @@
   An example message that can be dismissed.
 </p>
 
-{{#unless this.messageDismissed}}
+{{#if this.showMessage}}
   <Message @type="example" @onDismiss={{this.dismissMessage}}>
     Hello World
   </Message>
-{{/unless}}
+{{/if}}
 
 <p>
   Flash messages
