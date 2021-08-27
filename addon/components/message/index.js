@@ -16,7 +16,7 @@ export default class MessageComponent extends Component {
   handleClickDismiss() {
     this.isDismissed = true;
 
-    return this._waitForAnimation().then(() => this.args.onDismiss());
+    this._waitForAnimation().then(() => this.args.onDismiss());
   }
 
   @action
