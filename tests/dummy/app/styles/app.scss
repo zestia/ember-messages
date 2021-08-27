@@ -1,6 +1,5 @@
 :root {
   --grey: grey;
-  --line-height-1: 1;
 }
 
 @keyframes fade-in {
@@ -50,8 +49,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
 
-.flash-messages .message:not(:last-child) {
-  margin-bottom: 10px;
+  .message:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }
