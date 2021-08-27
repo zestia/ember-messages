@@ -1,1 +1,23 @@
-{{outlet}}
+<p>
+  An example message
+</p>
+
+<Message @type="example">
+  Hello World
+</Message>
+
+<p>
+  An example message that can be dismissed.
+</p>
+
+{{#unless this.messageDismissed}}
+  <Message @type="example" @onDismiss={{this.dismissMessage}}>
+    Hello World
+  </Message>
+{{/unless}}
+
+<p>
+  Flash messages
+</p>
+
+<FlashMessages />

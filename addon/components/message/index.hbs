@@ -5,7 +5,7 @@
     "message "
     (if @type (concat "message--" @type))
     (if
-      @dismissable
+      this.isDismissible
       (concat " message--" (if this.isDismissed "dismissed" "revealed"))
     )
   }}
@@ -15,7 +15,7 @@
   <div class="message__body">
     {{yield}}
   </div>
-  {{#if @dismissable}}
+  {{#if this.isDismissible}}
     <button
       type="button"
       class="message__dismiss"
