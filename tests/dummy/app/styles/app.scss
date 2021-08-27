@@ -1,4 +1,8 @@
-@keyframes test-fade-in {
+:root {
+  --grey: grey;
+}
+
+@keyframes fade-in {
   0% {
     opacity: 0;
   }
@@ -8,7 +12,7 @@
   }
 }
 
-@keyframes test-fade-out {
+@keyframes fade-out {
   0% {
     opacity: 1;
   }
@@ -16,12 +20,37 @@
   100% {
     opacity: 0;
   }
+}
+
+.message {
+  border: 1px solid var(--grey);
+  padding: 10px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .message--revealed {
-  animation: test-fade-in 100ms backwards;
+  animation: fade-in 250ms backwards;
 }
 
 .message--dismissed {
-  animation: test-fade-out 100ms forwards;
+  animation: fade-out 250ms forwards;
+}
+
+.message__dismiss {
+  margin-left: 10px;
+}
+
+.message__dismiss::after {
+  content: 'Dismiss';
+}
+
+.flash-messages {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .message:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }

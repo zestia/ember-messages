@@ -1,9 +1,10 @@
 # Changelog
 
-## 2.2.1 (not yet published)
+## 3.0.0 (not yet published)
 
 - Upgrade dependencies
 - Simplify waiting for animation
+- No longer require `@dismissible` argument
 
 ## 2.2.0
 

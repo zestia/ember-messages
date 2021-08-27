@@ -66,13 +66,9 @@ module('message', function (hooks) {
   test('dismissing', async function (assert) {
     assert.expect(8);
 
-    this.dismiss = () => {
-      assert.step('dismissed');
-    };
+    this.handleDismiss = () => assert.step('dismissed');
 
-    await render(
-      hbs`<Message @dismissable={{true}} @onDismiss={{this.dismiss}} />`
-    );
+    await render(hbs`<Message @onDismiss={{this.handleDismiss}} />`);
 
     assert
       .dom('.message__dismiss')

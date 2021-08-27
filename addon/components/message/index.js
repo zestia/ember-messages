@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
-import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 import { defer } from 'rsvp';
 
 export default class MessageComponent extends Component {
@@ -8,11 +8,15 @@ export default class MessageComponent extends Component {
 
   @tracked isDismissed = false;
 
+  get isDismissible() {
+    return typeof this.args.onDismiss === 'function';
+  }
+
   @action
   handleClickDismiss() {
     this.isDismissed = true;
 
-    this._waitForAnimation().then(() => this.args.onDismiss());
+    return this._waitForAnimation().then(() => this.args.onDismiss());
   }
 
   @action
