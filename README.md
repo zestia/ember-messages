@@ -45,7 +45,7 @@ https://zestia.github.io/messages/
 #### Standalone message
 
 ```handlebars
-<Message @type='your-type-goes-here'>
+<Message @type="your-type-goes-here">
   Content goes here
 </Message>
 ```
@@ -54,7 +54,7 @@ https://zestia.github.io/messages/
 
 ```handlebars
 {{#if this.showMessage}}
-  <Message @type='warning' @onDismiss={{this.hideMessage}}>
+  <Message @type="warning" @onDismiss={{this.hideMessage}}>
     Clicking hide will fire the dismiss action after a CSS animation
   </Message>
 {{/if}}
