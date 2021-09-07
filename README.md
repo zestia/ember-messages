@@ -32,6 +32,10 @@ Additionally, messages can be flashed using the flash message service.
 ember install @zestia/ember-messages
 ```
 
+## Demo
+
+https://zestia.github.io/messages/
+
 ## Notes
 
 - This package intentionally does not come with any styles.
@@ -41,7 +45,7 @@ ember install @zestia/ember-messages
 #### Standalone message
 
 ```handlebars
-<Message @type="your-type-goes-here">
+<Message @type='your-type-goes-here'>
   Content goes here
 </Message>
 ```
@@ -50,10 +54,7 @@ ember install @zestia/ember-messages
 
 ```handlebars
 {{#if this.showMessage}}
-  <Message
-    @type="warning"
-    @onDismiss={{this.hideMessage}}
-  >
+  <Message @type='warning' @onDismiss={{this.hideMessage}}>
     Clicking hide will fire the dismiss action after a CSS animation
   </Message>
 {{/if}}
