@@ -4,9 +4,14 @@ import { action } from '@ember/object';
 import { defer } from 'rsvp';
 
 export default class MessageComponent extends Component {
-  willAnimate = defer();
+  willAnimate = null;
 
   @tracked isDismissed = false;
+
+  constructor() {
+    super(...arguments);
+    this._waitForAnimation();
+  }
 
   get isDismissible() {
     return typeof this.args.onDismiss === 'function';
