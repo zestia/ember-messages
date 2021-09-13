@@ -1,5 +1,9 @@
 :root {
-  --grey: grey;
+  --grey: silver;
+  --blue: royalblue;
+  --green: forestgreen;
+  --yellow: gold;
+  --red: tomato;
 }
 
 @keyframes fade-in {
@@ -43,6 +47,22 @@
 
 .message__dismiss::after {
   content: 'Dismiss';
+}
+
+.message--info {
+  border-color: var(--blue);
+}
+
+.message--success {
+  border-color: var(--green);
+}
+
+.message--warning {
+  border-color: var(--yellow);
+}
+
+.message--error {
+  border-color: var(--red);
 }
 
 .flash-messages {
