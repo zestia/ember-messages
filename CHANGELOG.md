@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.0
+
+- The dismiss action uses a test waiter, and so is aware of the animation.
+
 ## 3.0.0 (not yet published)
 
 - Upgrade dependencies
