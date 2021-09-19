@@ -2,19 +2,12 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { defer } from 'rsvp';
-import { buildWaiter } from '@ember/test-waiters';
-
-const dismiss = buildWaiter('@zestia/ember-messages:dismiss');
+import { waitForPromise } from '@ember/test-waiters';
 
 export default class MessageComponent extends Component {
   willAnimate = null;
 
   @tracked isDismissed = false;
-
-  constructor() {
-    super(...arguments);
-    this._waitForAnimation();
-  }
 
   get isDismissible() {
     return typeof this.args.onDismiss === 'function';
@@ -22,12 +15,9 @@ export default class MessageComponent extends Component {
 
   @action
   handleClickDismiss() {
-    const token = dismiss.beginAsync();
     this.isDismissed = true;
 
-    this._waitForAnimation()
-      .then(() => this.args.onDismiss())
-      .then(() => dismiss.endAsync(token));
+    this._waitForAnimation().then(() => this.args.onDismiss());
   }
 
   @action
@@ -37,6 +27,6 @@ export default class MessageComponent extends Component {
 
   _waitForAnimation() {
     this.willAnimate = defer();
-    return this.willAnimate.promise;
+    return waitForPromise(this.willAnimate.promise);
   }
 }
