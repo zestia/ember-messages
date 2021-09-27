@@ -2,7 +2,6 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { waitUntil, render, settled, click, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import waitForAnimation from '../../helpers/wait-for-animation';
 
 module('flash-messages', function (hooks) {
   setupRenderingTest(hooks);
@@ -64,7 +63,7 @@ module('flash-messages', function (hooks) {
   });
 
   test('dismissing', async function (assert) {
-    assert.expect(2);
+    assert.expect(1);
 
     await render(hbs`<FlashMessages />`);
 
@@ -74,19 +73,7 @@ module('flash-messages', function (hooks) {
 
     await click('.flash-messages > .flash-message > .message__dismiss');
 
-    assert.equal(
-      this.flashMessageService.queue.length,
-      1,
-      'flash message not removed from queue yet'
-    );
-
-    await waitForAnimation('.flash-messages > .flash-message');
-
-    assert.equal(
-      this.flashMessageService.queue.length,
-      0,
-      'flash message fully dismissed after animation'
-    );
+    assert.equal(this.flashMessageService.queue.length, 0);
   });
 
   test('shares flash messages state', async function (assert) {

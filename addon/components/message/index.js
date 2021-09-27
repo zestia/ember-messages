@@ -2,16 +2,12 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { defer } from 'rsvp';
+import { waitForPromise } from '@ember/test-waiters';
 
 export default class MessageComponent extends Component {
   willAnimate = null;
 
   @tracked isDismissed = false;
-
-  constructor() {
-    super(...arguments);
-    this._waitForAnimation();
-  }
 
   get isDismissible() {
     return typeof this.args.onDismiss === 'function';
@@ -26,11 +22,16 @@ export default class MessageComponent extends Component {
 
   @action
   handleAnimationEnd() {
+    if (!this.willAnimate) {
+      return;
+    }
+
     this.willAnimate.resolve();
+    this.willAnimate = null;
   }
 
   _waitForAnimation() {
     this.willAnimate = defer();
-    return this.willAnimate.promise;
+    return waitForPromise(this.willAnimate.promise);
   }
 }

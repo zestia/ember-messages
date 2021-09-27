@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, find } from '@ember/test-helpers';
+import { render, click, find, waitFor } from '@ember/test-helpers';
 import waitForAnimation from '../../helpers/wait-for-animation';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -82,7 +82,9 @@ module('message', function (hooks) {
         'has revealed class for animation purposes'
       );
 
-    await click('.message > .message__dismiss');
+    click('.message > .message__dismiss');
+
+    await waitFor('.message');
 
     assert
       .dom('.message')
@@ -100,11 +102,57 @@ module('message', function (hooks) {
 
     assert.verifySteps([], 'has not yet dismissed');
 
-    await waitForAnimation('.message');
+    await waitForAnimation('.message', 'fade-out');
 
     assert.verifySteps(
       ['dismissed'],
       'sends a dismiss action after the dismiss animation'
     );
+  });
+
+  test('test waiter', async function (assert) {
+    assert.expect(1);
+
+    this.dismiss = () => this.set('showMessage', false);
+
+    this.showMessage = true;
+
+    await render(hbs`
+      {{#if this.showMessage}}
+        <Message @onDismiss={{this.dismiss}} />
+      {{/if}}
+    `);
+
+    await click('.message > .message__dismiss');
+
+    assert.dom('.message').doesNotExist('dismiss action is aware of animation');
+  });
+
+  test('bubbling animations', async function (assert) {
+    assert.expect(1);
+
+    await render(hbs`
+      <style>
+        @keyframes move {
+          to {
+            transform: translateX(100px);
+          }
+        }
+
+        .message__body.animate {
+          animation: move 100ms forwards;
+        }
+      </style>
+
+      <Message>
+        Hello World
+      </Message>
+    `);
+
+    find('.message__body').classList.add('animate');
+
+    await waitForAnimation('.message__body', 'move');
+
+    assert.ok(true, 'ignores bubbling child animations');
   });
 });
