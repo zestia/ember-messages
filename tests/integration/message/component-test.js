@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, find, waitFor, settled } from '@ember/test-helpers';
+import { render, click, find, waitFor } from '@ember/test-helpers';
 import waitForAnimation from '../../helpers/wait-for-animation';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -131,7 +131,7 @@ module('message', function (hooks) {
   test('bubbling animations', async function (assert) {
     assert.expect(1);
 
-    render(hbs`
+    await render(hbs`
       <style>
         @keyframes move {
           to {
@@ -139,7 +139,7 @@ module('message', function (hooks) {
           }
         }
 
-        .message__body {
+        .message__body.animate {
           animation: move 100ms forwards;
         }
       </style>
@@ -148,6 +148,8 @@ module('message', function (hooks) {
         Hello World
       </Message>
     `);
+
+    find('.message__body').classList.add('animate');
 
     await waitForAnimation('.message__body', 'move');
 
