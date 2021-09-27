@@ -22,6 +22,10 @@ export default class MessageComponent extends Component {
 
   @action
   handleAnimationEnd() {
+    if (!this.willAnimate) {
+      return;
+    }
+
     this.willAnimate.resolve();
   }
 
