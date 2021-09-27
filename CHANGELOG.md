@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.1
+
+- Move `@ember/test-waiters` to dependencies
+
 ## 3.1.0
 
 - The dismiss action uses a test waiter, and so is aware of the animation.
