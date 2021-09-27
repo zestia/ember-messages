@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, find, waitFor } from '@ember/test-helpers';
+import { render, click, find, waitFor, settled } from '@ember/test-helpers';
 import waitForAnimation from '../../helpers/wait-for-animation';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -102,7 +102,7 @@ module('message', function (hooks) {
 
     assert.verifySteps([], 'has not yet dismissed');
 
-    await waitForAnimation('.message');
+    await waitForAnimation('.message', 'fade-out');
 
     assert.verifySteps(
       ['dismissed'],
@@ -131,7 +131,7 @@ module('message', function (hooks) {
   test('bubbling animations', async function (assert) {
     assert.expect(1);
 
-    await render(hbs`
+    render(hbs`
       <style>
         @keyframes move {
           to {
@@ -149,7 +149,7 @@ module('message', function (hooks) {
       </Message>
     `);
 
-    await waitForAnimation('.message');
+    await waitForAnimation('.message__body', 'move');
 
     assert.ok(true, 'ignores bubbling child animations');
   });
