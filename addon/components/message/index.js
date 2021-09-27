@@ -27,6 +27,7 @@ export default class MessageComponent extends Component {
     }
 
     this.willAnimate.resolve();
+    this.willAnimate = null;
   }
 
   _waitForAnimation() {
