@@ -17,7 +17,7 @@ export default class MessageComponent extends Component {
   handleClickDismiss() {
     this.isDismissed = true;
 
-    this._waitForAnimation().then(() => this.args.onDismiss());
+    this._waitForAnimation('dismiss').then(() => this.args.onDismiss());
   }
 
   @action
@@ -30,8 +30,12 @@ export default class MessageComponent extends Component {
     this.willAnimate = null;
   }
 
-  _waitForAnimation() {
+  _waitForAnimation(label) {
     this.willAnimate = defer();
-    return waitForPromise(this.willAnimate.promise);
+
+    return waitForPromise(
+      this.willAnimate.promise,
+      `@zestia/ember-messages:${label}`
+    );
   }
 }

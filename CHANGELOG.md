@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.2
+
+- Add debug label to test waiter
+
 ## 3.1.1
 
 - Move `@ember/test-waiters` to dependencies
