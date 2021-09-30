@@ -5,7 +5,7 @@ import { defer } from 'rsvp';
 import { waitForPromise } from '@ember/test-waiters';
 
 export default class MessageComponent extends Component {
-  animation = null;
+  willAnimate = null;
 
   @tracked isDismissed = false;
 
@@ -22,19 +22,19 @@ export default class MessageComponent extends Component {
 
   @action
   handleAnimationEnd() {
-    if (!this.animation) {
+    if (!this.willAnimate) {
       return;
     }
 
-    this.animation.resolve();
-    this.animation = null;
+    this.willAnimate.resolve();
+    this.willAnimate = null;
   }
 
   _waitForAnimation(label) {
-    this.animation = defer();
+    this.willAnimate = defer();
 
     return waitForPromise(
-      this.animation.promise,
+      this.willAnimate.promise,
       `@zestia/ember-messages:${label}`
     );
   }
