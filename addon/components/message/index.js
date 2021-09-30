@@ -1,41 +1,28 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { defer } from 'rsvp';
-import { waitForPromise } from '@ember/test-waiters';
+import { waitFor } from '@ember/test-waiters';
+import { waitForAnimation } from '@zestia/animation-utils';
+import { modifier } from 'ember-modifier';
 
 export default class MessageComponent extends Component {
-  willAnimate = null;
+  element = null;
 
   @tracked isDismissed = false;
+
+  registerElement = modifier((element) => (this.element = element));
 
   get isDismissible() {
     return typeof this.args.onDismiss === 'function';
   }
 
   @action
-  handleClickDismiss() {
+  @waitFor
+  async dismiss() {
     this.isDismissed = true;
 
-    this._waitForAnimation('dismiss').then(() => this.args.onDismiss());
-  }
+    await waitForAnimation(this.element);
 
-  @action
-  handleAnimationEnd() {
-    if (!this.willAnimate) {
-      return;
-    }
-
-    this.willAnimate.resolve();
-    this.willAnimate = null;
-  }
-
-  _waitForAnimation(label) {
-    this.willAnimate = defer();
-
-    return waitForPromise(
-      this.willAnimate.promise,
-      `@zestia/ember-messages:${label}`
-    );
+    this.args.onDismiss();
   }
 }

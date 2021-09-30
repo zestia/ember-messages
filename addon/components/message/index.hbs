@@ -9,7 +9,7 @@
     )
   }}
   ...attributes
-  {{on "animationend" this.handleAnimationEnd}}
+  {{this.registerElement}}
 >
   <div class="message__body">
     {{yield}}
@@ -19,7 +19,7 @@
       type="button"
       class="message__dismiss"
       aria-label="Dismiss"
-      {{on "click" this.handleClickDismiss}}
+      {{on "click" this.dismiss}}
     ></button>
   {{/if}}
 </div>
