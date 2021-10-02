@@ -102,7 +102,7 @@ module('message', function (hooks) {
 
     assert.verifySteps([], 'has not yet dismissed');
 
-    await waitForAnimation('.message', 'fade-out');
+    await waitForAnimation('.message', { animationName: 'fade-out' });
 
     assert.verifySteps(
       ['dismissed'],
@@ -151,7 +151,7 @@ module('message', function (hooks) {
 
     find('.message__body').classList.add('animate');
 
-    await waitForAnimation('.message__body', 'move');
+    await waitForAnimation('.message__body', { animationName: 'move' });
 
     assert.ok(true, 'ignores bubbling child animations');
   });
