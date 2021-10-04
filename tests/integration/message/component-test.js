@@ -127,32 +127,4 @@ module('message', function (hooks) {
 
     assert.dom('.message').doesNotExist('dismiss action is aware of animation');
   });
-
-  test('bubbling animations', async function (assert) {
-    assert.expect(1);
-
-    await render(hbs`
-      <style>
-        @keyframes move {
-          to {
-            transform: translateX(100px);
-          }
-        }
-
-        .message__body.animate {
-          animation: move 100ms forwards;
-        }
-      </style>
-
-      <Message>
-        Hello World
-      </Message>
-    `);
-
-    find('.message__body').classList.add('animate');
-
-    await waitForAnimation('.message__body', { animationName: 'move' });
-
-    assert.ok(true, 'ignores bubbling child animations');
-  });
 });
