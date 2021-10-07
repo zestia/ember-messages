@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, find, waitFor } from '@ember/test-helpers';
+import { render, click, find, settled, waitFor } from '@ember/test-helpers';
 import waitForAnimation from '../../helpers/wait-for-animation';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -105,6 +105,8 @@ module('message', function (hooks) {
     await waitForAnimation('.message', {
       animationName: 'fade-out'
     });
+
+    await settled();
 
     assert.verifySteps(
       ['dismissed'],
