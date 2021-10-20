@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.2.2
+
+- Correct app re-exports
+
 ## 3.2.1
 
 - Bump `@zestia/animation-utils`
