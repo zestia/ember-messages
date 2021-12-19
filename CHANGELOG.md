@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.0
+
+- Ember Auto Import 2x
+
 ## 3.2.2
 
 - Correct app re-exports
