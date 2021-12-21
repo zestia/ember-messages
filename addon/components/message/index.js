@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { waitFor } from '@ember/test-waiters';
 import { waitForAnimation } from '@zestia/animation-utils';
 import { modifier } from 'ember-modifier';
+import { action } from '@ember/object';
 
 export default class MessageComponent extends Component {
   element = null;
@@ -15,11 +16,13 @@ export default class MessageComponent extends Component {
     return typeof this.args.onDismiss === 'function';
   }
 
-  dismiss = waitFor(async () => {
+  @action
+  @waitFor
+  async dismiss() {
     this.isDismissed = true;
 
     await waitForAnimation(this.element);
 
     this.args.onDismiss();
-  });
+  }
 }
