@@ -15,7 +15,7 @@ module('flash-messages', function (hooks) {
 
     await render(hbs`<FlashMessages />`);
 
-    assert.equal(
+    assert.strictEqual(
       this.element.innerHTML,
       '<!---->',
       'does not render if there are no flash messages to display'
@@ -73,7 +73,7 @@ module('flash-messages', function (hooks) {
 
     await click('.flash-messages > .flash-message > .message__dismiss');
 
-    assert.equal(this.flashMessageService.queue.length, 0);
+    assert.strictEqual(this.flashMessageService.queue.length, 0);
   });
 
   test('shares flash messages state', async function (assert) {
@@ -100,7 +100,7 @@ module('flash-messages', function (hooks) {
 
     await render(hbs`<FlashMessages />`);
 
-    assert.equal(
+    assert.strictEqual(
       find(
         '.flash-messages > .flash-message > .message__body'
       ).innerHTML.trim(),
@@ -126,7 +126,7 @@ module('flash-messages', function (hooks) {
 
     const container = find('.container');
 
-    assert.equal(
+    assert.strictEqual(
       container.scrollTop,
       0,
       'precondition: container is scrolled to the top'
@@ -146,7 +146,7 @@ module('flash-messages', function (hooks) {
 
     container.scrollTo(0, 0);
 
-    assert.equal(
+    assert.strictEqual(
       container.scrollTop,
       0,
       'precondition: container is scrolled back to the top'

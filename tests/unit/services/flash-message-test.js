@@ -26,9 +26,9 @@ module('service:flash-message', function (hooks) {
 
       const message = flashMessageService.add('error', 'Error!');
 
-      assert.equal(flashMessageService.queue.length, 1);
-      assert.equal(message.type, 'error');
-      assert.equal(message.text, 'Error!');
+      assert.strictEqual(flashMessageService.queue.length, 1);
+      assert.strictEqual(message.type, 'error');
+      assert.strictEqual(message.text, 'Error!');
     });
 
     test('it does not add duplicates', function (assert) {
@@ -64,11 +64,11 @@ module('service:flash-message', function (hooks) {
       flashMessageService.add('error', 'Fail');
       flashMessageService.add('success', 'Yey');
 
-      assert.equal(flashMessageService.queue.length, 2);
+      assert.strictEqual(flashMessageService.queue.length, 2);
 
       flashMessageService.clear();
 
-      assert.equal(flashMessageService.queue.length, 0);
+      assert.strictEqual(flashMessageService.queue.length, 0);
     });
   });
 });
