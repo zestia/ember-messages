@@ -10,7 +10,9 @@ export default class MessageComponent extends Component {
 
   @tracked isDismissed = false;
 
-  registerElement = modifier((element) => (this.element = element));
+  registerElement = modifier((element) => (this.element = element), {
+    eager: false
+  });
 
   get isDismissible() {
     return typeof this.args.onDismiss === 'function';

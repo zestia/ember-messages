@@ -6,16 +6,19 @@ import { action } from '@ember/object';
 export default class FlashMessageComponent extends Component {
   @inject('flash-message') flashMessageService;
 
-  scrollIntoView = modifier((element) => {
-    try {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest'
-      });
-    } catch (error) {
-      // eslint-disable no-empty
-    }
-  });
+  scrollIntoView = modifier(
+    (element) => {
+      try {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
+      } catch (error) {
+        // eslint-disable no-empty
+      }
+    },
+    { eager: false }
+  );
 
   @action
   handleDismissMessage(message) {
