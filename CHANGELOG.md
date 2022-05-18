@@ -1,8 +1,10 @@
 # Changelog
 
-## 4.0.0
+## 3.3.0
 
 - Ember Auto Import 2x
+- Upgrade dependencies
+- Run ember-cli-update
 
 ## 3.2.2
 
