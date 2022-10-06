@@ -14,6 +14,10 @@ export default class MessageComponent extends Component {
     eager: false
   });
 
+  get dismissed() {
+    return this.isDismissible ? `${this.isDismissed}` : null;
+  }
+
   get isDismissible() {
     return typeof this.args.onDismiss === 'function';
   }

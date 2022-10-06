@@ -38,7 +38,7 @@ module('flash-messages', function (hooks) {
       );
 
     assert
-      .dom('.flash-messages > .flash-message.message.message--success')
+      .dom(".flash-messages > .flash-message.message[data-type='success']")
       .includesText('Success!');
 
     this.flashMessageService.add('error', 'Error!');
@@ -46,7 +46,7 @@ module('flash-messages', function (hooks) {
     await settled();
 
     assert
-      .dom('.flash-messages > .flash-message.message.message--error')
+      .dom(".flash-messages > .flash-message.message[data-type='error']")
       .includesText('Error!');
 
     assert

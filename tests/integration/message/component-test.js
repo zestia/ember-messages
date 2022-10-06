@@ -28,9 +28,9 @@ module('message', function (hooks) {
 
     assert
       .dom('.message')
-      .doesNotHaveClass(
-        'message--revealed',
-        'does not add revealed class, because by default messages are not dismissible'
+      .doesNotHaveAttribute(
+        'data-dismissed',
+        'by default messages are not dismissible'
       );
 
     assert.deepEqual(
@@ -57,14 +57,15 @@ module('message', function (hooks) {
 
     assert
       .dom('.message')
-      .hasClass(
-        'message--foo',
-        'gets a class name based on the type of message'
+      .hasAttribute(
+        'data-type',
+        'foo',
+        'gets an attr based on the type of message'
       );
   });
 
   test('dismissing', async function (assert) {
-    assert.expect(8);
+    assert.expect(7);
 
     this.handleDismiss = () => assert.step('dismissed');
 
@@ -77,8 +78,9 @@ module('message', function (hooks) {
 
     assert
       .dom('.message')
-      .hasClass(
-        'message--revealed',
+      .hasAttribute(
+        'data-dismissed',
+        'false',
         'has revealed class for animation purposes'
       );
 
@@ -88,16 +90,10 @@ module('message', function (hooks) {
 
     assert
       .dom('.message')
-      .hasClass(
-        'message--dismissed',
-        'has dismissed class name for animation purposes'
-      );
-
-    assert
-      .dom('.message')
-      .doesNotHaveClass(
-        'message--revealed',
-        'no longer has revealed class name'
+      .hasAttribute(
+        'data-dismissed',
+        'false',
+        'has dismissed attr for animation purposes'
       );
 
     assert.verifySteps([], 'has not yet dismissed');
