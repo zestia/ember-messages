@@ -44,7 +44,7 @@ https://zestia.github.io/ember-messages/
 ```handlebars
 {{#if this.showMessage}}
   <Message @type="warning" @onDismiss={{this.hideMessage}}>
-    Clicking hide will fire the dismiss action after a CSS animation
+    Clicking dismiss will fire the dismiss action after a CSS animation
   </Message>
 {{/if}}
 ```
