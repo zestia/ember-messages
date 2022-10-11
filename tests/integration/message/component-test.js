@@ -8,7 +8,7 @@ module('message', function (hooks) {
   setupRenderingTest(hooks);
 
   test('defaults', async function (assert) {
-    assert.expect(6);
+    assert.expect(7);
 
     await render(hbs`<Message class="foo" />`);
 
@@ -25,6 +25,13 @@ module('message', function (hooks) {
     assert
       .dom('.message__dismiss')
       .doesNotExist('does not display dismiss button but default');
+
+    assert
+      .dom('.message')
+      .doesNotHaveAttribute(
+        'data-type',
+        'messages do not have a type by default'
+      );
 
     assert
       .dom('.message')
