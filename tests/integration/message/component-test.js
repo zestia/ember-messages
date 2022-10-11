@@ -92,7 +92,7 @@ module('message', function (hooks) {
       .dom('.message')
       .hasAttribute(
         'data-dismissed',
-        'false',
+        'true',
         'has dismissed attr for animation purposes'
       );
 
