@@ -33,11 +33,11 @@
   align-items: center;
 }
 
-.message--revealed {
+.message[data-dismissed='false'] {
   animation: fade-in 250ms backwards;
 }
 
-.message--dismissed {
+.message[data-dismissed='true'] {
   animation: fade-out 250ms forwards;
 }
 
@@ -49,19 +49,19 @@
   content: 'Dismiss';
 }
 
-.message--info {
+.message[data-type='info'] {
   border-color: var(--blue);
 }
 
-.message--success {
+.message[data-type='success'] {
   border-color: var(--green);
 }
 
-.message--warning {
+.message[data-type='warning'] {
   border-color: var(--yellow);
 }
 
-.message--error {
+.message[data-type='error'] {
   border-color: var(--red);
 }
 
