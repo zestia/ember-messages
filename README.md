@@ -26,6 +26,12 @@ ember install @zestia/ember-messages
 
 https://zestia.github.io/ember-messages
 
+## Features
+
+- Dismissible messages ✔︎
+- Flash message queue ✔︎
+- Scroll into view ✔︎
+
 ## Notes
 
 - This package intentionally does not come with any styles.
