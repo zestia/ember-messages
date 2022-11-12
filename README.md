@@ -45,19 +45,24 @@ https://zestia.github.io/ember-messages
 </Message>
 ```
 
-## Arguments
+## `Message`
 
-### `@type`
+### Arguments
+
+#### `@type`
 
 Optional. Sets a data attribute on the message DOM element.
 
-### `@onDismiss`
+#### `@onDismiss`
 
 Optional. When provided, the message becomes dismissible. This action is fired after a message has been dismissed and any animations have finished.
 
-## Flash messages
+## `FlashMessages`
 
-This addon comes with a service for managing a queue of flash messages.
+This addon comes with a service for managing a queue of flash messages
+
+<details>
+  <summary>Example</summary>
 
 ```javascript
 @inject('flash-message') flashMessageService;
@@ -70,3 +75,5 @@ The can be rendered as below. When a message is added, it will be scrolled into 
 ```handlebars
 <FlashMessages />
 ```
+
+</details>
