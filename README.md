@@ -70,7 +70,7 @@ This addon comes with a service for managing a queue of flash messages
 this.flashMessageService.add('error', 'Something went wrong!');
 ```
 
-The can be rendered as below. When a message is added, it will be scrolled into view.
+They can be rendered as below. When a message is added, it will be scrolled into view.
 
 ```handlebars
 <FlashMessages />
