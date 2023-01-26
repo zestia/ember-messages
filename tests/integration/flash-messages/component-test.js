@@ -112,6 +112,7 @@ module('flash-messages', function (hooks) {
     assert.expect(4);
 
     await render(hbs`
+      {{! template-lint-disable no-forbidden-elements }}
       <style>
         .container { height: 0px; overflow: scroll }
         .space { height: 100px }
