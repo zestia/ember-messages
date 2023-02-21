@@ -72,7 +72,7 @@ module('message', function (hooks) {
   });
 
   test('dismissing', async function (assert) {
-    assert.expect(7);
+    assert.expect(8);
 
     this.handleDismiss = () => assert.step('dismissed');
 
@@ -105,9 +105,11 @@ module('message', function (hooks) {
 
     assert.verifySteps([], 'has not yet dismissed');
 
-    await waitForAnimation('.message', {
+    const animations = await waitForAnimation('.message', {
       animationName: 'fade-out'
     });
+
+    assert.strictEqual(animations.length, 1);
 
     await settled();
 

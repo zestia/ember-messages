@@ -27,7 +27,7 @@ export default class MessageComponent extends Component {
   async dismiss() {
     this.isDismissed = true;
 
-    await waitForAnimation(this.element);
+    await waitForAnimation(this.element, { maybe: true });
 
     this.args.onDismiss();
   }

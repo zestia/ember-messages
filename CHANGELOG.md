@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.4.1
+
+- Update animation utils
+
 ## 3.4.0
 
 - Remove BEM classes in favour of data attributes
