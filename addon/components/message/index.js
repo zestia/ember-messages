@@ -6,7 +6,7 @@ import { modifier } from 'ember-modifier';
 import { action } from '@ember/object';
 
 export default class MessageComponent extends Component {
-  element = null;
+  element;
 
   @tracked isDismissed = false;
 
