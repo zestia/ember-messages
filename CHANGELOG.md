@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.1
+
+- Run `ember-cli-update`
+
 ## 3.4.1
 
 - Update animation utils
