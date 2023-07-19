@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.2
+
+- Re-release of 3.5.1 but published to GH Packages instead of NPM
+
 ## 3.5.1
 
 - Run `ember-cli-update`
