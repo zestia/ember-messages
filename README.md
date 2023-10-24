@@ -22,6 +22,13 @@ Additionally, messages can be flashed using the flash message service.
 ember install @zestia/ember-messages
 ```
 
+Add the following to `~/.npmrc` to pull @zestia scoped packages from Github instead of NPM.
+
+```
+@zestia:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=<YOUR_GH_TOKEN>
+```
+
 ## Demo
 
 https://zestia.github.io/ember-messages
