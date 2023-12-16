@@ -4,6 +4,7 @@
   --green: forestgreen;
   --yellow: gold;
   --red: tomato;
+  --space: 10px;
 }
 
 @keyframes fade-in {
@@ -28,7 +29,7 @@
 
 .message {
   border: 1px solid var(--grey);
-  padding: 10px;
+  padding: var(--space);
   display: inline-flex;
   align-items: center;
 }
@@ -42,7 +43,7 @@
 }
 
 .message__dismiss {
-  margin-left: 10px;
+  margin-left: var(--space);
 }
 
 .message__dismiss::after {
@@ -71,6 +72,6 @@
   align-items: flex-start;
 
   .message:not(:last-child) {
-    margin-bottom: 10px;
+    margin-bottom: var(--space);
   }
 }
