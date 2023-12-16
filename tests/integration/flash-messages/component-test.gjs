@@ -1,22 +1,31 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { waitUntil, render, settled, click, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import {
+  waitUntil,
+  render,
+  settled,
+  click,
+  find,
+  getRootElement
+} from '@ember/test-helpers';
+import FlashMessages from '@zestia/ember-messages/components/flash-messages';
 
 module('flash-messages', function (hooks) {
   setupRenderingTest(hooks);
 
+  let flashMessageService;
+
   hooks.beforeEach(function () {
-    this.flashMessageService = this.owner.lookup('service:flash-message');
+    flashMessageService = this.owner.lookup('service:flash-message');
   });
 
   test('it does not render', async function (assert) {
     assert.expect(1);
 
-    await render(hbs`<FlashMessages />`);
+    await render(<template><FlashMessages /></template>);
 
     assert.strictEqual(
-      this.element.innerHTML,
+      getRootElement().innerHTML,
       '<!---->',
       'does not render if there are no flash messages to display'
     );
@@ -25,9 +34,9 @@ module('flash-messages', function (hooks) {
   test('it renders', async function (assert) {
     assert.expect(5);
 
-    await render(hbs`<FlashMessages />`);
+    await render(<template><FlashMessages /></template>);
 
-    const success = this.flashMessageService.add('success', 'Success!');
+    const success = flashMessageService.add('success', 'Success!');
 
     await settled();
 
@@ -41,7 +50,7 @@ module('flash-messages', function (hooks) {
       .dom(".flash-messages > .flash-message.message[data-type='success']")
       .includesText('Success!');
 
-    this.flashMessageService.add('error', 'Error!');
+    flashMessageService.add('error', 'Error!');
 
     await settled();
 
@@ -53,7 +62,7 @@ module('flash-messages', function (hooks) {
       .dom('.flash-messages > .flash-message.message')
       .exists({ count: 2 }, 'renders flash messages');
 
-    this.flashMessageService.remove(success);
+    flashMessageService.remove(success);
 
     await settled();
 
@@ -65,26 +74,26 @@ module('flash-messages', function (hooks) {
   test('dismissing', async function (assert) {
     assert.expect(1);
 
-    await render(hbs`<FlashMessages />`);
+    await render(<template><FlashMessages /></template>);
 
-    this.flashMessageService.add('success', 'Success!');
+    flashMessageService.add('success', 'Success!');
 
     await settled();
 
     await click('.flash-messages > .flash-message > .message__dismiss');
 
-    assert.strictEqual(this.flashMessageService.queue.length, 0);
+    assert.strictEqual(flashMessageService.queue.length, 0);
   });
 
   test('shares flash messages state', async function (assert) {
     assert.expect(1);
 
-    await render(hbs`
+    await render(<template>
       <FlashMessages />
       <FlashMessages />
-    `);
+    </template>);
 
-    this.flashMessageService.add('success', 'Wohoo');
+    flashMessageService.add('success', 'Wohoo');
 
     await settled();
 
@@ -96,9 +105,9 @@ module('flash-messages', function (hooks) {
   test('escaping', async function (assert) {
     assert.expect(1);
 
-    this.flashMessageService.add('success', '<strong>Foo</strong>');
+    flashMessageService.add('success', '<strong>Foo</strong>');
 
-    await render(hbs`<FlashMessages />`);
+    await render(<template><FlashMessages /></template>);
 
     assert.strictEqual(
       find(
@@ -111,11 +120,10 @@ module('flash-messages', function (hooks) {
   test('scrolls into view', async function (assert) {
     assert.expect(4);
 
-    await render(hbs`
+    await render(<template>
       {{! template-lint-disable no-forbidden-elements }}
       <style>
-        .container { height: 0px; overflow: scroll }
-        .space { height: 100px }
+        .container { height: 0px; overflow: scroll } .space { height: 100px }
       </style>
 
       <div class="container">
@@ -123,7 +131,7 @@ module('flash-messages', function (hooks) {
 
         <FlashMessages />
       </div>
-    `);
+    </template>);
 
     const container = find('.container');
 
@@ -133,7 +141,7 @@ module('flash-messages', function (hooks) {
       'precondition: container is scrolled to the top'
     );
 
-    this.flashMessageService.add('info', 'Look at me');
+    flashMessageService.add('info', 'Look at me');
 
     const scrolled = () => container.scrollTop === 100;
 
@@ -153,7 +161,7 @@ module('flash-messages', function (hooks) {
       'precondition: container is scrolled back to the top'
     );
 
-    this.flashMessageService.add('info', 'Look at me');
+    flashMessageService.add('info', 'Look at me');
 
     await waitUntil(scrolled);
 

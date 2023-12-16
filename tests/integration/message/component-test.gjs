@@ -2,7 +2,8 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click, find, settled, waitFor } from '@ember/test-helpers';
 import waitForAnimation from 'dummy/tests/helpers/wait-for-animation';
-import hbs from 'htmlbars-inline-precompile';
+import { tracked } from '@glimmer/tracking';
+import Message from '@zestia/ember-messages/components/message';
 
 module('message', function (hooks) {
   setupRenderingTest(hooks);
@@ -10,7 +11,7 @@ module('message', function (hooks) {
   test('defaults', async function (assert) {
     assert.expect(7);
 
-    await render(hbs`<Message class="foo" />`);
+    await render(<template><Message class="foo" /></template>);
 
     assert
       .dom('.message')
@@ -50,7 +51,7 @@ module('message', function (hooks) {
   test('block content', async function (assert) {
     assert.expect(1);
 
-    await render(hbs`<Message>Hello World</Message>`);
+    await render(<template><Message>Hello World</Message></template>);
 
     assert
       .dom('.message > .message__body')
@@ -60,7 +61,7 @@ module('message', function (hooks) {
   test('message type', async function (assert) {
     assert.expect(1);
 
-    await render(hbs`<Message @type="foo" />`);
+    await render(<template><Message @type="foo" /></template>);
 
     assert
       .dom('.message')
@@ -74,9 +75,9 @@ module('message', function (hooks) {
   test('dismissing', async function (assert) {
     assert.expect(8);
 
-    this.handleDismiss = () => assert.step('dismissed');
+    const handleDismiss = () => assert.step('dismissed');
 
-    await render(hbs`<Message @onDismiss={{this.handleDismiss}} />`);
+    await render(<template><Message @onDismiss={{handleDismiss}} /></template>);
 
     assert
       .dom('.message__dismiss')
@@ -122,15 +123,17 @@ module('message', function (hooks) {
   test('test waiter', async function (assert) {
     assert.expect(1);
 
-    this.dismiss = () => this.set('showMessage', false);
+    const state = new (class {
+      @tracked showMessage = true;
+    })();
 
-    this.showMessage = true;
+    const dismiss = () => (state.showMessage = false);
 
-    await render(hbs`
-      {{#if this.showMessage}}
-        <Message @onDismiss={{this.dismiss}} />
+    await render(<template>
+      {{#if state.showMessage}}
+        <Message @onDismiss={{dismiss}} />
       {{/if}}
-    `);
+    </template>);
 
     await click('.message > .message__dismiss');
 
