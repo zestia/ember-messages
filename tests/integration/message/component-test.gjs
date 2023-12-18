@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'dummy/tests/helpers';
 import { render, click, find, settled, waitFor } from '@ember/test-helpers';
 import waitForAnimation from 'dummy/tests/helpers/wait-for-animation';
 import { tracked } from '@glimmer/tracking';
