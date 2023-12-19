@@ -2,6 +2,8 @@ import { inject } from '@ember/service';
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 import { action } from '@ember/object';
+import { fn } from '@ember/helper';
+import Message from '@zestia/ember-messages/components/message';
 
 export default class FlashMessageComponent extends Component {
   @inject('flash-message') flashMessageService;
@@ -24,4 +26,21 @@ export default class FlashMessageComponent extends Component {
   handleDismissMessage(message) {
     this.flashMessageService.remove(message);
   }
+
+  <template>
+    {{#if this.flashMessageService.queue.length}}
+      <div class="flash-messages">
+        {{#each this.flashMessageService.queue as |message|}}
+          <Message
+            class="flash-message"
+            @type={{message.type}}
+            @onDismiss={{fn this.handleDismissMessage message}}
+            {{this.scrollIntoView}}
+          >
+            {{message.text}}
+          </Message>
+        {{/each}}
+      </div>
+    {{/if}}
+  </template>
 }

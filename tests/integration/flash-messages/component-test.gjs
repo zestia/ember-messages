@@ -25,7 +25,7 @@ module('flash-messages', function (hooks) {
     await render(<template><FlashMessages /></template>);
 
     assert.strictEqual(
-      getRootElement().innerHTML,
+      getRootElement().innerHTML.trim(),
       '<!---->',
       'does not render if there are no flash messages to display'
     );
