@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.5.5
+
+- Run ember-cli-update
+- Upgrade dependencies
+
 ## 3.5.4
 
 - Convert to `.gjs`
