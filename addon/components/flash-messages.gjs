@@ -8,19 +8,16 @@ import Message from '@zestia/ember-messages/components/message';
 export default class FlashMessageComponent extends Component {
   @inject('flash-message') flashMessageService;
 
-  scrollIntoView = modifier(
-    (element) => {
-      try {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest'
-        });
-      } catch (error) {
-        // eslint-disable no-empty
-      }
-    },
-    { eager: false }
-  );
+  scrollIntoView = modifier((element) => {
+    try {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+    } catch (error) {
+      // eslint-disable no-empty
+    }
+  });
 
   @action
   handleDismissMessage(message) {
