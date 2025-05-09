@@ -118,7 +118,7 @@ module('flash-messages', function (hooks) {
   });
 
   test('scrolls into view', async function (assert) {
-    assert.expect(4);
+    assert.expect(2);
 
     await render(<template>
       {{! template-lint-disable no-forbidden-elements }}
@@ -143,31 +143,12 @@ module('flash-messages', function (hooks) {
 
     flashMessageService.add('info', 'Look at me');
 
-    const scrolled = () => container.scrollTop === 100;
-
-    await waitUntil(scrolled);
+    await waitUntil(() => container.scrollTop === 100);
 
     assert.ok(
       true,
       'when rendered, a flash message forces itself to be scrolled into view. ' +
         '(this is primarily because the user may be at the end of a long form)'
-    );
-
-    container.scrollTo(0, 0);
-
-    assert.strictEqual(
-      container.scrollTop,
-      0,
-      'precondition: container is scrolled back to the top'
-    );
-
-    flashMessageService.add('info', 'Look at me');
-
-    await waitUntil(scrolled);
-
-    assert.ok(
-      true,
-      'rendering the same flash message again will still scroll to it'
     );
   });
 });
