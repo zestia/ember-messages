@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.6
+
+- Swap use of `inject` for `service`
+
 ## 3.5.5
 
 - Run ember-cli-update

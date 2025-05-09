@@ -71,7 +71,7 @@ This addon comes with a service for managing a queue of flash messages
   <summary>Example</summary>
 
 ```javascript
-@inject('flash-message') flashMessageService;
+@service('flash-message') flashMessageService;
 // ...
 this.flashMessageService.add('error', 'Something went wrong!');
 ```

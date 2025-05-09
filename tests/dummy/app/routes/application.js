@@ -1,8 +1,8 @@
 import Route from '@ember/routing/route';
-import { inject } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class ApplicationRoute extends Route {
-  @inject('flash-message') flashMessageService;
+  @service('flash-message') flashMessageService;
 
   beforeModel() {
     this.flashMessageService.add('info', 'Info message');

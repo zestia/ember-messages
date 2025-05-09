@@ -1,4 +1,4 @@
-import { inject } from '@ember/service';
+import { service } from '@ember/service';
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 import { action } from '@ember/object';
@@ -6,7 +6,7 @@ import { fn } from '@ember/helper';
 import Message from '@zestia/ember-messages/components/message';
 
 export default class FlashMessageComponent extends Component {
-  @inject('flash-message') flashMessageService;
+  @service('flash-message') flashMessageService;
 
   scrollIntoView = modifier((element) => {
     try {
