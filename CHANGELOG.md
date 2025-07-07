@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.7
+
+- Update `@ember/test-waiters`
+
 ## 3.5.6
 
 - Swap use of `inject` for `service`
