@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.8
+
+- Switch to `tracked-built-ins`
+
 ## 3.5.7
 
 - Update `@ember/test-waiters`
