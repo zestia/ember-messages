@@ -1,6 +1,6 @@
 {
   "name": "@zestia/ember-messages",
-  "version": "4.0.0-1",
+  "version": "4.0.0",
   "description": "Message components for Ember apps & addons",
   "keywords": [
     "ember-addon",
