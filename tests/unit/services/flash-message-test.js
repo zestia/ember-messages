@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { setupTest } from 'dummy/tests/helpers';
+import { setupTest } from 'ember-qunit';
 const { isArray } = Array;
 
 module('service:flash-message', function (hooks) {
