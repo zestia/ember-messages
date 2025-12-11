@@ -8,6 +8,8 @@ import {
   find,
   getRootElement
 } from '@ember/test-helpers';
+import { on } from '@ember/modifier';
+import { fn } from '@ember/helper';
 import FlashMessages from '@zestia/ember-messages/components/flash-messages';
 
 module('flash-messages', function (hooks) {
@@ -160,5 +162,26 @@ module('flash-messages', function (hooks) {
       'when rendered, a flash message forces itself to be scrolled into view. ' +
         '(this is primarily because the user may be at the end of a long form)'
     );
+  });
+
+  test('using service direct from template', async function (assert) {
+    assert.expect(2);
+
+    await render(
+      <template>
+        <FlashMessages />
+        <button
+          type="button"
+          {{on "click" (fn flashMessageService.add "success" "It worked")}}
+        ></button>
+      </template>
+    );
+
+    await click('button');
+
+    assert
+      .dom('.flash-messages > .flash-message')
+      .hasText('It worked')
+      .hasAttribute('data-type', 'success');
   });
 });

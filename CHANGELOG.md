@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.1
+
+- Allow usage direct from template
+
 ## 4.0.0
 
 - Convert to a v2 addon

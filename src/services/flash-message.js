@@ -4,7 +4,7 @@ import { tracked } from 'tracked-built-ins';
 export default class FlashMessageService extends Service {
   queue = tracked([]);
 
-  add(type, text) {
+  add = (type, text) => {
     const message = { type, text };
 
     this.remove(message);
@@ -12,19 +12,19 @@ export default class FlashMessageService extends Service {
     this.queue.push(message);
 
     return message;
-  }
+  };
 
-  remove(message) {
+  remove = (message) => {
     const index = this.#findIndex(message);
 
     if (index !== -1) {
       this.queue.splice(index, 1);
     }
-  }
+  };
 
-  clear() {
+  clear = () => {
     this.queue.splice(0, this.queue.length);
-  }
+  };
 
   #findIndex(message) {
     return this.queue.findIndex(
