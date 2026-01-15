@@ -6,8 +6,8 @@ import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';
 import { start as qunitStart, setupEmberOnerrorValidation } from 'ember-qunit';
-// import FlashMessageService from '@zestia/ember-messages/services/flash-message';
-// import '../demo/styles/app.css';
+import FlashMessageService from '@zestia/ember-messages/services/flash-message';
+import '../demo-app/styles.css';
 
 class Router extends EmberRouter {
   location = 'none';
@@ -16,7 +16,8 @@ class Router extends EmberRouter {
 
 class TestApp extends EmberApp {
   modules = {
-    './router': Router
+    './router': Router,
+    './services/flash-message': FlashMessageService
     // add any custom services here
     // import.meta.glob('./services/*', { eager: true }),
   };
