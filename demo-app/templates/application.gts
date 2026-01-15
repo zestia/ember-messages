@@ -3,10 +3,29 @@ import { tracked } from '@glimmer/tracking';
 import FlashMessages from '@zestia/ember-messages/components/flash-messages';
 import Message from '@zestia/ember-messages/components/message';
 import Route from 'ember-route-template';
-import '../styles/app.css';
+import { service } from '@ember/service';
 
 class ApplicationTemplate extends Component {
+  @service('flash-message') flashMessageService;
+
   @tracked showMessage = true;
+
+  constructor() {
+    super(...arguments);
+
+    setTimeout(() => {
+      this.flashMessageService.add('info', 'Info message');
+    }, 500);
+    setTimeout(() => {
+      this.flashMessageService.add('success', 'Success message');
+    }, 550);
+    setTimeout(() => {
+      this.flashMessageService.add('warning', 'Warning message');
+    }, 600);
+    setTimeout(() => {
+      this.flashMessageService.add('error', 'Error message');
+    }, 700);
+  }
 
   dismissMessage = () => {
     this.showMessage = false;
