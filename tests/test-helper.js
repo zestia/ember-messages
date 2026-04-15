@@ -22,7 +22,6 @@ class TestApp extends EmberApp {
     // add any custom services here
     // import.meta.glob('./services/*', { eager: true }),
   };
-  p;
 }
 
 Router.map(function () {});
