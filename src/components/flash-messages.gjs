@@ -3,7 +3,7 @@ import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 import { action } from '@ember/object';
 import { fn } from '@ember/helper';
-import Message from '@zestia/ember-messages/components/message';
+import Message from './message.gjs';
 
 export default class FlashMessageComponent extends Component {
   @service('flash-message') flashMessageService;
