@@ -3,7 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click, find, settled, waitFor } from '@ember/test-helpers';
 import waitForAnimation from '#tests/helpers/wait-for-animation';
 import { tracked } from '@glimmer/tracking';
-import Message from '@zestia/ember-messages/components/message';
+import Message from '#src/components/message';
 
 module('message', function (hooks) {
   setupRenderingTest(hooks);

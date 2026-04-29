@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import FlashMessages from '@zestia/ember-messages/components/flash-messages';
-import Message from '@zestia/ember-messages/components/message';
+import FlashMessages from '#src/components/flash-messages';
+import Message from '#src/components/message';
 import Route from 'ember-route-template';
 import { service } from '@ember/service';
 

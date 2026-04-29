@@ -10,7 +10,7 @@ import {
 } from '@ember/test-helpers';
 import { on } from '@ember/modifier';
 import { fn } from '@ember/helper';
-import FlashMessages from '@zestia/ember-messages/components/flash-messages';
+import FlashMessages from '#src/components/flash-messages';
 
 module('flash-messages', function (hooks) {
   setupRenderingTest(hooks);
