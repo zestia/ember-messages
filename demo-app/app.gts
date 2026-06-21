@@ -4,7 +4,7 @@ import PageTitleService from 'ember-page-title/services/page-title';
 import FlashMessageService from '#src/services/flash-message';
 
 class Router extends EmberRouter {
-  location = 'history';
+  location = 'hash';
   rootURL = '/';
 }
 
