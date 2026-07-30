@@ -4,7 +4,6 @@ import { waitFor } from '@ember/test-waiters';
 import { waitForAnimation } from '@zestia/animation-utils';
 import { modifier } from 'ember-modifier';
 import { on } from '@ember/modifier';
-import { action } from '@ember/object';
 
 export default class MessageComponent extends Component {
   element;
@@ -21,15 +20,17 @@ export default class MessageComponent extends Component {
     return typeof this.args.onDismiss === 'function';
   }
 
-  @action
-  @waitFor
-  async dismiss() {
+  get dismissLabel() {
+    return this.args.dismissLabel || 'Dismiss';
+  }
+
+  dismiss = waitFor(async () => {
     this.isDismissed = true;
 
     await waitForAnimation(this.element, { maybe: true });
 
     this.args.onDismiss();
-  }
+  });
 
   <template>
     <div
@@ -47,9 +48,10 @@ export default class MessageComponent extends Component {
         <button
           type="button"
           class="message__dismiss"
-          aria-label="Dismiss"
           {{on "click" this.dismiss}}
-        ></button>
+        >
+          {{this.dismissLabel}}
+        </button>
       {{/if}}
     </div>
   </template>

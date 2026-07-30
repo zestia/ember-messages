@@ -63,6 +63,10 @@ Optional. Sets a data attribute on the message DOM element.
 
 Optional. When provided, the message becomes dismissible. This action is fired after a message has been dismissed and any animations have finished.
 
+#### `@dismissLabel`
+
+Optional. Useful if you need internationalisation or custom button content.
+
 ## `FlashMessages`
 
 This addon comes with a service for managing a queue of flash messages

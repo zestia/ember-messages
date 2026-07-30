@@ -46,10 +46,6 @@
   margin-left: var(--space);
 }
 
-.message__dismiss::after {
-  content: 'Dismiss';
-}
-
 .message[data-type='info'] {
   border-color: var(--blue);
 }

@@ -74,13 +74,15 @@ module('flash-messages', function (hooks) {
   });
 
   test('dismissing', async function (assert) {
-    assert.expect(1);
+    assert.expect(2);
 
-    await render(<template><FlashMessages /></template>);
+    await render(<template><FlashMessages @dismissLabel="X" /></template>);
 
     flashMessageService.add('success', 'Success!');
 
     await settled();
+
+    assert.dom('.message__dismiss').hasText('X');
 
     await click('.flash-messages > .flash-message > .message__dismiss');
 
@@ -181,7 +183,7 @@ module('flash-messages', function (hooks) {
 
     assert
       .dom('.flash-messages > .flash-message')
-      .hasText('It worked')
+      .includesText('It worked')
       .hasAttribute('data-type', 'success');
   });
 });

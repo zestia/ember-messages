@@ -4,9 +4,16 @@ import { render, click, find, settled, waitFor } from '@ember/test-helpers';
 import waitForAnimation from '#tests/helpers/wait-for-animation';
 import { tracked } from '@glimmer/tracking';
 import Message from '#src/components/message';
+import { trackedObject } from '@ember/reactive/collections';
 
 module('message', function (hooks) {
   setupRenderingTest(hooks);
+
+  let handleDismiss;
+
+  hooks.beforeEach(function (assert) {
+    handleDismiss = () => assert.step('dismissed');
+  });
 
   test('defaults', async function (assert) {
     assert.expect(7);
@@ -77,16 +84,11 @@ module('message', function (hooks) {
   });
 
   test('dismissing', async function (assert) {
-    assert.expect(8);
-
-    const handleDismiss = () => assert.step('dismissed');
+    assert.expect(7);
 
     await render(<template><Message @onDismiss={{handleDismiss}} /></template>);
 
-    assert
-      .dom('.message__dismiss')
-      .hasText('')
-      .hasAttribute('aria-label', 'Dismiss');
+    assert.dom('.message__dismiss').hasText('Dismiss');
 
     assert
       .dom('.message')
@@ -124,12 +126,24 @@ module('message', function (hooks) {
     );
   });
 
+  test('dismiss label', async function (assert) {
+    assert.expect(1);
+
+    await render(
+      <template>
+        <Message @onDismiss={{handleDismiss}} @dismissLabel="X" />
+      </template>
+    );
+
+    assert.dom('.message__dismiss').hasText('X');
+  });
+
   test('test waiter', async function (assert) {
     assert.expect(1);
 
-    const state = new (class {
-      @tracked showMessage = true;
-    })();
+    const state = trackedObject({
+      showMessage: true
+    });
 
     const dismiss = () => (state.showMessage = false);
 

@@ -32,6 +32,7 @@ export default class FlashMessageComponent extends Component {
             class="flash-message"
             @type={{message.type}}
             @onDismiss={{fn this.handleDismissMessage message}}
+            @dismissLabel={{@dismissLabel}}
             {{this.scrollIntoView}}
           >
             {{message.text}}

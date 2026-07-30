@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.0
+
+- Add `@dismissLabel`
+
 ## 4.0.1
 
 - Allow usage direct from template
