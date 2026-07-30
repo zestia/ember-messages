@@ -2,7 +2,6 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click, find, settled, waitFor } from '@ember/test-helpers';
 import waitForAnimation from '#tests/helpers/wait-for-animation';
-import { tracked } from '@glimmer/tracking';
 import Message from '#src/components/message';
 import { trackedObject } from '@ember/reactive/collections';
 
