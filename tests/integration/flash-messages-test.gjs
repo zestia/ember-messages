@@ -11,6 +11,7 @@ import {
 import { on } from '@ember/modifier';
 import { fn } from '@ember/helper';
 import FlashMessages from '#src/components/flash-messages';
+import Message from '#src/components/message';
 
 module('flash-messages', function (hooks) {
   setupRenderingTest(hooks);
@@ -164,6 +165,31 @@ module('flash-messages', function (hooks) {
       'when rendered, a flash message forces itself to be scrolled into view. ' +
         '(this is primarily because the user may be at the end of a long form)'
     );
+  });
+
+  test('custom component', async function (assert) {
+    assert.expect(1);
+
+    const CustomMessage = <template>
+      <Message @type={{@type}} @onDismiss={{@onDismiss}} ...attributes>
+        <span class="icon--{{@type}}"></span>
+        {{yield}}
+      </Message>
+    </template>;
+
+    await render(
+      <template><FlashMessages @Component={{CustomMessage}} /></template>
+    );
+
+    flashMessageService.add('success', 'Success!');
+
+    await settled();
+
+    assert
+      .dom(
+        '.flash-messages > .flash-message.message[data-type="success"] .icon--success'
+      )
+      .exists();
   });
 
   test('using service direct from template', async function (assert) {

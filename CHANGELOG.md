@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.0
+
+- Add `@Component` for custom flash messages
+
 ## 4.1.0
 
 - Add `@dismissLabel`

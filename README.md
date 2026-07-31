@@ -71,14 +71,14 @@ Optional. Useful if you need internationalisation or custom button content.
 
 This addon comes with a service for managing a queue of flash messages
 
-<details>
-  <summary>Example</summary>
-
-```javascript
-@service('flash-message') flashMessageService;
-// ...
-this.flashMessageService.add('error', 'Something went wrong!');
-```
+  <details>
+    <summary>Example</summary>
+  
+  ```javascript
+  @service('flash-message') flashMessageService;
+  // ...
+  this.flashMessageService.add('error', 'Something went wrong!');
+  ```
 
 They can be rendered as below. When a message is added, it will be scrolled into view.
 
@@ -87,3 +87,9 @@ They can be rendered as below. When a message is added, it will be scrolled into
 ```
 
 </details>
+
+### Arguments
+
+#### `@Component`
+
+Optional. A custom component to use for each flash message

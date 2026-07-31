@@ -1,7 +1,6 @@
 import { service } from '@ember/service';
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
-import { action } from '@ember/object';
 import { fn } from '@ember/helper';
 import Message from './message.gjs';
 
@@ -19,24 +18,23 @@ export default class FlashMessageComponent extends Component {
     }
   });
 
-  @action
-  handleDismissMessage(message) {
-    this.flashMessageService.remove(message);
+  get Component() {
+    return this.args.Component ?? Message;
   }
 
   <template>
     {{#if this.flashMessageService.queue.length}}
       <div class="flash-messages">
         {{#each this.flashMessageService.queue as |message|}}
-          <Message
+          <this.Component
             class="flash-message"
             @type={{message.type}}
-            @onDismiss={{fn this.handleDismissMessage message}}
+            @onDismiss={{fn this.flashMessageService.remove message}}
             @dismissLabel={{@dismissLabel}}
             {{this.scrollIntoView}}
           >
             {{message.text}}
-          </Message>
+          </this.Component>
         {{/each}}
       </div>
     {{/if}}
